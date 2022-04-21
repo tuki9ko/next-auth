@@ -9,7 +9,7 @@
       "docs"
     ]
   },
-  "repository": "https://github.com/nextauthjs/next-auth.git",
+  "repository": "https://github.com/tuki9ko/next-auth.git",
   "scripts": {
     "build:app": "turbo run build --scope=next-auth-app --include-dependencies",
     "build": "turbo run build --scope=next-auth --scope=@next-auth/* --no-deps",
@@ -102,15 +102,5 @@
     "**/tests",
     "**/__tests__"
   ],
-  "packageManager": "yarn@1.22.17",
-  "funding": [
-    {
-      "type": "github",
-      "url": "https://github.com/sponsors/balazsorban44"
-    },
-    {
-      "type": "opencollective",
-      "url": "https://opencollective.com/nextauth"
-    }
-  ]
+  "packageManager": "yarn@1.22.17"
 }

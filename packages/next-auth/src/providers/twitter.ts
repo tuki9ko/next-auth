@@ -168,8 +168,21 @@ export interface TwitterProfile {
 
 export default function Twitter<
   P extends Record<string, any> = TwitterLegacyProfile | TwitterProfile
->(options: OAuthUserConfig<P>): OAuthConfig<P> {
+>(options: OAuthUserConfig<P>, scope?: string, hasUsersWriteScope?: boolean, hasTweetWriteScope?: boolean): OAuthConfig<P> {
   if (options.version === "2.0") {
+    let scopeString = "users.read tweet.read offline.access"
+    
+    if(!scope){
+      if(hasUsersWriteScope){
+        scopeString += " users.write"
+      }
+      if(hasTweetWriteScope){
+        scopeString += " tweet.write"
+      }
+    }else{
+      scopeString = scope
+    }
+
     return {
       id: "twitter",
       name: "Twitter",
@@ -177,7 +190,7 @@ export default function Twitter<
       type: "oauth",
       authorization: {
         url: "https://twitter.com/i/oauth2/authorize",
-        params: { scope: "users.read tweet.read offline.access" },
+        params: { scope: scopeString },
       },
       token: {
         url: "https://api.twitter.com/2/oauth2/token",
